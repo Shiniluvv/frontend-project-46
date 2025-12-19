@@ -1,27 +1,15 @@
 import { readFileSync } from 'fs';
 import { resolve, extname } from 'path';
-import yaml from 'js-yaml';
+import getParser from './parsers/index.js';
 
 const readFile = (filepath) => {
-  // Получаем абсолютный путь (работает с относительными путями)
   const absolutePath = resolve(process.cwd(), filepath);
-
-  // Читаем содержимое файла
   const content = readFileSync(absolutePath, 'utf-8');
 
-  // Определяем формат по расширению
-  const extension = extname(filepath).toLowerCase();
+  const extension = extname(filepath).toLowerCase().slice(1); // убираем точку: '.json' → 'json'
+  const parse = getParser(extension);
 
-  // Парсим в зависимости от формата
-  if (extension === '.json') {
-    return JSON.parse(content);
-  }
-
-  if (extension === '.yaml' || extension === '.yml') {
-    return yaml.load(content);
-  }
-
-  throw new Error(`Unsupported file format: ${extension}. Supported: .json, .yaml, .yml`);
+  return parse(content);
 };
 
 export default readFile;
