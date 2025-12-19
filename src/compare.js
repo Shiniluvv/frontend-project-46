@@ -1,6 +1,29 @@
-const compare = (data1, data2) => {
-  // Пока просто возвращаем строку, что сравнение работает
-  return `Comparing ${JSON.stringify(data1)} with ${JSON.stringify(data2)}`;
+import _ from 'lodash';
+
+const compare = (obj1, obj2) => {
+  const keys1 = Object.keys(obj1);
+  const keys2 = Object.keys(obj2);
+  const allKeys = _.sortBy(_.union(keys1, keys2));
+  
+  const diff = allKeys.map((key) => {
+    if (!_.has(obj2, key)) {
+      return { key, type: 'removed', value: obj1[key] };
+    }
+    if (!_.has(obj1, key)) {
+      return { key, type: 'added', value: obj2[key] };
+    }
+    if (_.isEqual(obj1[key], obj2[key])) {
+      return { key, type: 'unchanged', value: obj1[key] };
+    }
+    return {
+      key,
+      type: 'changed',
+      oldValue: obj1[key],
+      newValue: obj2[key],
+    };
+  });
+  
+  return diff;
 };
 
 export default compare;
