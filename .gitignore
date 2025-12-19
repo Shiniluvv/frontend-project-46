@@ -1,0 +1,16 @@
+# Зависимости npm
+node_modules/
+
+# Временные файлы редакторов
+*.swp
+*.swo
+*~
+
+# Файлы операционных систем
+.DS_Store
+Thumbs.db
+
+# Логи и кэш
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
