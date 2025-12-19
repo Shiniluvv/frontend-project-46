@@ -4,7 +4,7 @@ const compare = (obj1, obj2) => {
   const keys1 = Object.keys(obj1);
   const keys2 = Object.keys(obj2);
   const allKeys = _.sortBy(_.union(keys1, keys2));
-  
+
   const diff = allKeys.map((key) => {
     if (!_.has(obj2, key)) {
       return { key, type: 'removed', value: obj1[key] };
@@ -22,7 +22,7 @@ const compare = (obj1, obj2) => {
       newValue: obj2[key],
     };
   });
-  
+
   return diff;
 };
 
