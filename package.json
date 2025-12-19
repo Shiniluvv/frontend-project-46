@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "type": "module",
   "description": "[![Actions Status](https://github.com/Shiniluvv/frontend-project-46/actions/workflows/hexlet-check.yml/badge.svg)](https://github.com/Shiniluvv/frontend-project-46/actions)",
-  "main": "gendiff.js",
+  "main": "src/index.js",
   "bin": {
     "gendiff": "./gendiff.js"
   },
@@ -13,6 +13,7 @@
   "author": "BunnyBae",
   "license": "ISC",
   "dependencies": {
-    "commander": "^14.0.2"
+    "commander": "^14.0.2",
+    "js-yaml": "^4.1.1"
   }
 }
