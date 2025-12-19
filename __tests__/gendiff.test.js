@@ -17,3 +17,21 @@ test('compare flat JSON files', () => {
   const result = genDiff(file1, file2);
   expect(result.trim()).toBe(expected.trim());
 });
+
+test('compare flat YAML files', () => {
+  const file1 = getFixturePath('file1.yaml');
+  const file2 = getFixturePath('file2.yaml');
+  const expected = readFile('expected_flat.txt');
+
+  const result = genDiff(file1, file2);
+  expect(result.trim()).toBe(expected.trim());
+});
+
+test('compare mixed JSON and YAML files', () => {
+  const file1 = getFixturePath('file1.json');
+  const file2 = getFixturePath('file2.yaml');
+  const expected = readFile('expected_flat.txt');
+
+  const result = genDiff(file1, file2);
+  expect(result.trim()).toBe(expected.trim());
+});
